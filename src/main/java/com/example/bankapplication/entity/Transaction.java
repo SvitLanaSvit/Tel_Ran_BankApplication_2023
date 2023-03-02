@@ -28,6 +28,7 @@ public class Transaction {
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name = "debit_account_id", referencedColumnName = "id")
     private Account debitAccount;
+
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name = "credit_account_id", referencedColumnName = "id")
     private Account creditAccount;
