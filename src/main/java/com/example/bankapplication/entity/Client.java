@@ -58,4 +58,21 @@ public class Client {
     public int hashCode() {
         return Objects.hash(firstName, lastName, email, phone);
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", status=" + status +
+                ", taxCode='" + taxCode + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                ", manager=" + manager +
+                '}';
+    }
 }

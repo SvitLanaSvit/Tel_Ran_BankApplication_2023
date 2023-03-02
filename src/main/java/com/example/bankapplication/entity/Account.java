@@ -58,4 +58,19 @@ public class Account {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", balance=" + balance +
+                ", currencyCode=" + currencyCode +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                ", client=" + client +
+                '}';
+    }
 }

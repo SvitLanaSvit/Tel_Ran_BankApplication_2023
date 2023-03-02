@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Table(name = "agreements")
 @Getter
@@ -31,4 +32,31 @@ public class Agreement {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agreement agreement = (Agreement) o;
+        return id == agreement.id && Objects.equals(createAt, agreement.createAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createAt);
+    }
+
+    @Override
+    public String toString() {
+        return "Agreement{" +
+                "id=" + id +
+                ", interestRate=" + interestRate +
+                ", status=" + status +
+                ", sum=" + sum +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                ", product=" + product +
+                ", account=" + account +
+                '}';
+    }
 }

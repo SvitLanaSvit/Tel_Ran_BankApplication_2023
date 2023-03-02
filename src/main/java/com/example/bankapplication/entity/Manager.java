@@ -47,4 +47,16 @@ public class Manager {
     public int hashCode() {
         return Objects.hash(firstName, lastName);
     }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", status=" + status +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

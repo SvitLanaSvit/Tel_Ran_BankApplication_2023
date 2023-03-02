@@ -52,4 +52,19 @@ public class Product {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", currencyCode=" + currencyCode +
+                ", interestRate=" + interestRate +
+                ", limit=" + limit +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                ", manager=" + manager +
+                '}';
+    }
 }
