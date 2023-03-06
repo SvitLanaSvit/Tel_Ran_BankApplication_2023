@@ -1,24 +1,32 @@
 package com.example.bankapplication.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
 
 @Table(name = "accounts")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
     @Column(name = "id")
-    private int id;
+    private UUID id;
     @Column(name = "name")
     private String name;
     @Column(name = "type")
@@ -30,7 +38,7 @@ public class Account {
     @Column(name = "currency_code")
     private int currencyCode;
     @Column(name = "create_at")
-    private Timestamp createAt;
+    private LocalDate createAt;
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 

@@ -1,19 +1,28 @@
 package com.example.bankapplication.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 @Table(name = "agreements")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Agreement {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
     @Column(name = "id")
-    private int id;
+    private UUID id;
     @Column(name = "interest_rate")
     private double interestRate;
     @Column(name = "status")
@@ -23,7 +32,7 @@ public class Agreement {
     @Column(name = "create_at")
     private Timestamp createAt;
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private LocalDate updatedAt;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "product_id", referencedColumnName = "id")

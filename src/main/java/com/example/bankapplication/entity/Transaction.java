@@ -1,21 +1,30 @@
 package com.example.bankapplication.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
 
 @Table(name = "transactions")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
     @Column(name = "id")
-    private int id;
+    private UUID id;
     @Column(name = "type")
     private int type;
     @Column(name = "amount")
@@ -23,7 +32,7 @@ public class Transaction {
     @Column(name = "description")
     private String description;
     @Column(name = "create_at")
-    private Timestamp createAt;
+    private LocalDate createAt;
 
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name = "debit_account_id", referencedColumnName = "id")
