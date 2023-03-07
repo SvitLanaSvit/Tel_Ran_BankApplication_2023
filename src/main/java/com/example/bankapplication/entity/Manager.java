@@ -1,5 +1,6 @@
 package com.example.bankapplication.entity;
 
+import com.example.bankapplication.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +9,13 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
 
+@Entity
 @Table(name = "managers")
 @Getter
 @Setter
@@ -31,9 +32,10 @@ public class Manager {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "status")
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private ManagerStatus status;
     @Column(name = "create_at")
-    private LocalDate createAt;
+    private Timestamp createAt;
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 

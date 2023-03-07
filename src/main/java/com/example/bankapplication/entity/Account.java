@@ -1,5 +1,8 @@
 package com.example.bankapplication.entity;
 
+import com.example.bankapplication.entity.enums.AccountStatus;
+import com.example.bankapplication.entity.enums.AccountType;
+import com.example.bankapplication.entity.enums.CurrencyCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +11,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
 
+@Entity
 @Table(name = "accounts")
 @Getter
 @Setter
@@ -30,15 +33,18 @@ public class Account {
     @Column(name = "name")
     private String name;
     @Column(name = "type")
-    private int type;
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
     @Column(name = "status")
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
     @Column(name = "balance")
     private double balance;
     @Column(name = "currency_code")
-    private int currencyCode;
+    @Enumerated(EnumType.STRING)
+    private CurrencyCode currencyCode;
     @Column(name = "create_at")
-    private LocalDate createAt;
+    private Timestamp createAt;
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 

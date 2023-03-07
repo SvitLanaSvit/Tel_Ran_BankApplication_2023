@@ -1,5 +1,7 @@
 package com.example.bankapplication.entity;
 
+import com.example.bankapplication.entity.enums.CurrencyCode;
+import com.example.bankapplication.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +10,13 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.*;
 
+@Entity
 @Table(name = "products")
 @Getter
 @Setter
@@ -29,15 +31,17 @@ public class Product {
     @Column(name = "name")
     private String name;
     @Column(name = "status")
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
     @Column(name = "currency_code")
-    private int currencyCode;
+    @Enumerated(EnumType.STRING)
+    private CurrencyCode currencyCode;
     @Column(name = "interest_rate")
     private double interestRate;
     @Column(name = "limit")
     private int limit;
     @Column(name = "create_at")
-    private LocalDate createAt;
+    private Timestamp createAt;
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 

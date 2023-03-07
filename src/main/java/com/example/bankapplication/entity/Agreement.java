@@ -1,5 +1,6 @@
 package com.example.bankapplication.entity;
 
+import com.example.bankapplication.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,10 +9,10 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 @Table(name = "agreements")
 @Getter
 @Setter
@@ -26,13 +27,14 @@ public class Agreement {
     @Column(name = "interest_rate")
     private double interestRate;
     @Column(name = "status")
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private AgreementStatus status;
     @Column(name = "sum")
     private double sum;
     @Column(name = "create_at")
     private Timestamp createAt;
     @Column(name = "updated_at")
-    private LocalDate updatedAt;
+    private Timestamp updatedAt;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "product_id", referencedColumnName = "id")
